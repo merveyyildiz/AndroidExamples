@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="imageName">
+        <item>kocaeli</item>
+        <item>istanbul</item>
+        <item>eskisehir</item>
+        <item>erzurum</item>
+    </string-array>
+    <string-array name="iller">
+        <item>Kocaeli</item>
+        <item>İstanbul</item>
+        <item>Eskişehir</item>
+        <item>Erzurum</item>
+    </string-array>
+    <string-array name="plakalar">
+        <item>41</item>
+        <item>34</item>
+        <item>26</item>
+        <item>25</item>
+    </string-array>
+    <string-array name="aciklama">
+        <item>En büyük marmara ilinden biri</item>
+        <item>Doğu anadolu illerinden en kalabalık il.</item>
+        <item>eskisehir en güzel şehirlerden bir tanesi</item>
+        <item>istanbul en kalabalık şehir</item>
+    </string-array>
+
+</resources>
