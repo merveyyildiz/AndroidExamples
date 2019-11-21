@@ -1,0 +1,124 @@
+
+TextView tvText;
+Double sayi1,sonuc,sayi2;
+String durum;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Button  btnNokta,btnIki, btnUc,btnDort,btnBes,btnAlti,btnYedi,btnSekiz,btnDokuz,btnSifir, btnTopla, btnCikar,btnCarp,btnBol, btnEsittir;
+        setContentView(R.layout.activity_main);
+        tvText=findViewById(R.id.txt);
+        btnNokta=findViewById(R.id.btn_nokta);
+        Button btnBir = findViewById(R.id.btn_bir);
+        btnIki = (Button)findViewById(R.id.btn_iki);
+        btnUc = (Button)findViewById(R.id.btn_uc);
+        btnDort = (Button)findViewById(R.id.btn_dort);
+        btnBes = (Button)findViewById(R.id.btn_bes);
+        btnAlti = (Button)findViewById(R.id.btn_alti);
+        btnYedi = (Button)findViewById(R.id.btn_yedi);
+        btnSekiz = (Button)findViewById(R.id.btn_sekiz);
+        btnDokuz = (Button)findViewById(R.id.btn_dokuz);
+        btnSifir = (Button)findViewById(R.id.btn_sifir);
+        btnTopla = (Button)findViewById(R.id.btn_topla);
+        btnCikar = (Button)findViewById(R.id.btn_cikar);
+        btnCarp = (Button)findViewById(R.id.btn_carp);
+        btnBol = (Button)findViewById(R.id.btn_bol);
+        btnEsittir = (Button)findViewById(R.id.btn_esittir);
+        btnBir.setOnClickListener(this);
+        btnIki.setOnClickListener(this);
+        btnUc.setOnClickListener(this); btnDort.setOnClickListener(this);
+        btnBes.setOnClickListener(this);
+        btnAlti.setOnClickListener(this);
+        btnYedi.setOnClickListener(this); btnSekiz.setOnClickListener(this);
+        btnDokuz.setOnClickListener(this);
+        btnSifir.setOnClickListener(this);
+        btnNokta.setOnClickListener(this);
+        btnTopla.setOnClickListener(this);
+        btnCarp.setOnClickListener(this);
+        btnCikar.setOnClickListener(this);
+        btnBol.setOnClickListener(this);
+        btnEsittir.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id=v.getId();
+        switch(id){
+            case R.id.btn_bir:
+                tvText.setText(tvText.getText()+"1");
+                break;
+            case R.id.btn_iki:
+                tvText.setText(tvText.getText()+"2");
+                break;
+            case R.id.btn_uc:
+                tvText.setText(tvText.getText()+"3");
+                break;
+            case R.id.btn_dort:
+                tvText.setText(tvText.getText()+"4");
+                break;
+            case R.id.btn_bes:
+                tvText.setText(tvText.getText()+"5");
+                break;
+            case R.id.btn_alti:
+                tvText.setText(tvText.getText()+"6");
+                break;
+            case R.id.btn_yedi:
+                tvText.setText(tvText.getText()+"7");
+                break;
+            case R.id.btn_sekiz:
+                tvText.setText(tvText.getText()+"8");
+                break;
+            case R.id.btn_dokuz:
+                tvText.setText(tvText.getText()+"9");
+                break;
+            case R.id.btn_nokta:
+                tvText.setText(tvText.getText()+".");
+                break;
+            case R.id.btn_topla:
+                sayi1=Double.parseDouble(tvText.getText().toString());
+                tvText.setText("");
+                durum="topla";
+                break;
+            case R.id.btn_cikar:
+                sayi1=Double.parseDouble(tvText.getText().toString());
+                tvText.setText("");
+                durum="cikar";
+                break;
+            case R.id.btn_carp:
+                sayi1=Double.parseDouble(tvText.getText().toString());
+                tvText.setText("");
+                durum="carp";
+                break;
+            case R.id.btn_bol:
+                sayi1=Double.parseDouble(tvText.getText().toString());
+                tvText.setText("");
+                durum="bol";
+                break;
+            case R.id.btn_esittir:
+                sayi2=Double.parseDouble(tvText.getText().toString());
+                if(!tvText.getText().toString().equals("")){
+                    if(durum.equals("topla"))
+                        sonuc=sayi1+sayi2;
+                    else if(durum.equals("cikar"))
+                        sonuc=sayi1-sayi2;
+                    else if(durum.equals("carp"))
+                        sonuc=sayi1*sayi2;
+                    else{
+                        if(sayi2!=0)
+                            sonuc=sayi1/sayi2;
+                        else
+                            tvText.setText("0 bölme hatasi");
+                    }
+                    tvText.setText(String.valueOf(sonuc));
+                }
+                break;
+
+
+        }
+    }
+}
+
+
+
