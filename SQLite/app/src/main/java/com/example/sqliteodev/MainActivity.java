@@ -24,8 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ListView lv_person;
     DatabaseHelper databaseHelper;
-    int selectid = 0;
-    String tel;
+    String isim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +36,7 @@ public class MainActivity extends AppCompatActivity {
         lv_person.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = lv_person.getItemAtPosition(position).toString();
-                // - Göre bölüyoruz
-                String[] itemBol = item.split(" - ");
-                // id'mizi alıyoruz
-                selectid = Integer.valueOf(itemBol[0]);
-                tel=String.valueOf(itemBol[2]);
+                isim = lv_person.getItemAtPosition(position).toString();
             }
         });
     }
@@ -62,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.update_contact:
                 Intent update = new Intent(this, UpdateActivity.class);
-                update.putExtra("Id",selectid);
+                update.putExtra("name",isim);
                 startActivity(update);
                 listele();
                 return true;
@@ -70,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 call();
                 return true;
             case R.id.delete_contact:
-                databaseHelper.deleteContact(selectid);
+                databaseHelper.deleteContact(isim);
                 listele();
                 return true;
         }
@@ -78,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void call() {
+        String tel=databaseHelper.findTel(isim);
         Intent callIntent=new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:"+tel));
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)== PackageManager.PERMISSION_GRANTED)

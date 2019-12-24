@@ -44,7 +44,7 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             String query = "SELECT * FROM " + TABLE_NAME;
             Cursor cursor = database.rawQuery(query, null);
             while (cursor.moveToNext()) {
-                value.add(cursor.getInt(0)  + " - " + cursor.getString(1)  + " - " + cursor.getString(2) );
+                value.add(cursor.getString(1));
             }
         } catch (Exception e) {
         }
@@ -65,27 +65,37 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public void deleteContact(int id) {
+    public void deleteContact(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
-            db.delete(TABLE_NAME, COL_ID + " = " + id, null);
+            db.delete(TABLE_NAME, COL_NAME_SURNAME + " = '" + name + "'" , null);
         } catch (Exception e) {
         }
 
         db.close();
     }
 
-    public void updateConcat(int id, String ad, String tel) {
+    public void updateConcat(String gelen, String ad, String tel) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
             ContentValues value = new ContentValues();
             value.put(COL_NAME_SURNAME, ad);
             value.put(COL_TEL, tel);
-            db.update(TABLE_NAME, value, COL_ID + " = '" + id + "'", null);
+            db.update(TABLE_NAME, value, COL_NAME_SURNAME + " = '" + gelen + "'", null);
         } catch (Exception e) {
 
         }
         db.close();
 
+    }
+    public String findTel(String name){
+        database=this.getReadableDatabase();
+        String tel="";
+        String query="SELECT * FROM "+TABLE_NAME+ " WHERE İsimSoyisim = '"+ name+"'";
+        Cursor cursor=database.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            tel=cursor.getString(2);
+        }
+        return tel;
     }
 }

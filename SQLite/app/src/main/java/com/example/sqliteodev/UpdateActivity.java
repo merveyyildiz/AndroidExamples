@@ -25,8 +25,8 @@ DatabaseHelper databaseHelper;
                 String name=et_name.getText().toString();
                 String tel=et_tel.getText().toString();
                 databaseHelper= new DatabaseHelper(UpdateActivity.this);
-                int id=getIntent().getIntExtra("Id",0);
-                databaseHelper.updateConcat(id,name,tel);
+               String gelen =getIntent().getStringExtra("name");
+                databaseHelper.updateConcat(gelen,name,tel);
                 Toast.makeText(UpdateActivity.this, "Güncelleme başarı ile gerçekleşmiştir", Toast.LENGTH_SHORT).show();
             }
         });
